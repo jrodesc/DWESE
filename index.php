@@ -2,102 +2,44 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Echo y print</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Formulario</title>
 </head>
 
-<body>
-  <!-- 
-    <p> <?php echo "Este texto se mostrará en la página web." ?></p>
-    <p><?= "Este texto se mostrará en la página web." ?></p>
-    <p><?php print("Este texto se mostrará en la página web.") ?></p>
-  -->
-  <?php
-  $nombre = "Jose Luis";
-  if (isset($nombre)) {
-    echo "<h1>Hola, $nombre</h1>";
-  } else {
-    echo "<h1>El nombre no esta definido</h1>";
-  }
-  ?>
+<body class="bg-dark d-flex justify-content-center align-items-center vh-100">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="card shadow-sm border-0 rounded-2.1">
+                    <div class="card-body p-4">
+                        <form method="post" action="Bienvenido.php">
+                            <div class="mb-4">
+                                <div class="text-center">
+                                    <label for="user" class="form-label">Usuario:</label>
+                                </div>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="user"
+                                    name="user"
+                                    placeholder="pon tu nombre de usuario"
+                                    required>
+                            </div>
 
-  <?php
-  $nombre_prueba;
-  $nombre_prueba = $nombre_prueba ?? "sin nombre";
-  if ($nombre_prueba == "sin nombre") {
-    echo "el usuario no tiene nombre definido";
-  } else {
-    echo "El usuario se llama $nombre_prueba";
-  }
-  ?>
-
-  <?php
-  echo "<br>";
-  $texto = "Hola ";
-  echo "$texto";
-  $mundo = $texto . "mundo";
-  echo "<br>";
-  echo "$mundo";
-  $texto .= "mundo";
-  echo "<br>";
-  echo "$texto";
-  ?>
-
-
-  <?php
-  echo "<br>";
-  echo "calculo del IVA";
-  echo "<br></br>";
-
-
-
-  function calcular_iva($base, $porcentaje)
-  {
-    $total = $base * $porcentaje / 100;
-    return $total + $base;
-  }
-  ?>
-
-  <?php
-  $precio_base = 348;
-  echo "El total con IVA añadido a " . $precio_base . " es " . calcular_iva($precio_base, 21);
-  ?>
-
-  <?php
-  function calcular_por_valor($valor)
-  {
-    $total = $valor * 100;
-    return $total;
-  }
-  ?>
-
-
-<?php
-function calcular_por_referencia($valor) {
-  $valor = $valor * 100;
-  return $valor;
-}
-?>
-
-
- 
-<?php
-echo "<br>";
-echo "el calculo por valor: " . calcular_por_valor(32);
-echo "<br>";
-echo "el calculo por referencia: " .  calcular_por_referencia(45);
-?>
-
-
-
-<?php
-$coches = array("Toyota", "Honda", "Audi");
-
-$coche = $coches[1];
-
-echo $coche;
-?>
+                            <div class="d-grid">
+                                <button type="submit" class="btn-primary">
+                                    Enviar
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
