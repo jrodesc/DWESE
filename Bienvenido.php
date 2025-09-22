@@ -21,18 +21,24 @@ function comprobarUsuario($usu) {
 
 if($resultado == true) {
     echo "
-    <html>
-        <body>
-            <h1>Bienvenido Jose Luis</h1>
-        </body>
-    </html>";
+<div class='container d-flex justify-content-center align-items-center vh-100'>
+    <div class='border-0 text-center' style='max-width: 500px;'>
+        <div class='card-body p-5'>
+            <i class='bi bi-person-check-fill text-success' style='font-size: 4rem;'></i>
+            <h1 class='text-success mt-3'>¡Bienvenido José Luis!</h1>
+        </div>
+    </div>
+</div>";
 } else {
     echo "
-    <html>
-        <body>
-            <h1>No eres quien esperaba</h1>
-        </body>
-    </html>";
+<div class='container d-flex justify-content-center align-items-center vh-100'>
+    <div class=' border-0 text-center border-danger' style='max-width: 500px;'>
+        <div class='card-body p-5'>
+            <i class='bi bi-person-x-fill text-danger' style='font-size: 4rem;'></i>
+            <h1 class='text-danger mt-3'>Acceso Denegado</h1>
+        </div>
+    </div>
+</div>";
 }
 ?>
 </body>
