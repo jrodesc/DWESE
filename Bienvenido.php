@@ -24,8 +24,7 @@ if($resultado == true) {
 <div class='container d-flex justify-content-center align-items-center vh-100'>
     <div class='border-0 text-center' style='max-width: 500px;'>
         <div class='card-body p-5'>
-            <i class='bi bi-person-check-fill text-success' style='font-size: 4rem;'></i>
-            <h1 class='text-success mt-3'>¡Bienvenido José Luis!</h1>
+            <h1 class='text-success mt-3'>¡Bienvenido Joselu!</h1>
         </div>
     </div>
 </div>";
@@ -34,7 +33,6 @@ if($resultado == true) {
 <div class='container d-flex justify-content-center align-items-center vh-100'>
     <div class=' border-0 text-center border-danger' style='max-width: 500px;'>
         <div class='card-body p-5'>
-            <i class='bi bi-person-x-fill text-danger' style='font-size: 4rem;'></i>
             <h1 class='text-danger mt-3'>Acceso Denegado</h1>
         </div>
     </div>
