@@ -20,7 +20,19 @@ function comprobarUsuario($usu) {
 }
 
 if($resultado == true) {
-    echo "Bienvenido $usu";
+    echo "
+    <html>
+        <body>
+            <h1>Bienvenido Jose Luis</h1>
+        </body>
+    </html>";
+} else {
+    echo "
+    <html>
+        <body>
+            <h1>No eres quien esperaba</h1>
+        </body>
+    </html>";
 }
 ?>
 </body>
