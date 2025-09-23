@@ -36,7 +36,7 @@
 <div class='container d-flex justify-content-center align-items-center vh-100'>
     <div class=' border-0 text-center border-danger' style='max-width: 500px;'>
         <div class='card-body p-5'>
-            <h1 class='text-danger mt-3'>Acceso Denegado, no introducio joselu.</h1>
+            <h1 class='text-danger mt-3'>Acceso Denegado, introduzca joselu.</h1>
         </div>
     </div>
 </div>";

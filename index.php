@@ -28,7 +28,7 @@
                                     required>
                             </div>
 
-                            <div class="d-grid">
+                            <div class="d-grid card-body">
                                 <button type="submit" class="btn-primary">
                                     Enviar
                                 </button>
