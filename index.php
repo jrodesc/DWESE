@@ -24,7 +24,7 @@
                                     class="form-control"
                                     id="user"
                                     name="user"
-                                    placeholder="pon tu nombre de usuario"
+                                    placeholder="introduzca el usuario joselu"
                                     required>
                             </div>
 
