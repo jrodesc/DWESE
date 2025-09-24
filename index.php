@@ -24,11 +24,11 @@
                                     class="form-control"
                                     id="user"
                                     name="user"
-                                    placeholder="pon tu nombre de usuario"
+                                    placeholder="introduzca el usuario joselu"
                                     required>
                             </div>
 
-                            <div class="d-grid">
+                            <div class="d-grid card-body">
                                 <button type="submit" class="btn-primary">
                                     Enviar
                                 </button>
