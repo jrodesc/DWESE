@@ -11,17 +11,6 @@ session_start();
     <title>Ejercicio 1</title>
 </head>
 <body>
-<!--
-Escribir un programa que permita jugar a doble o nada:
-El jugador apuesta una cantidad y tira una moneda.
-● Si sale cara obtiene el doble de la cantidad apostada.
-● Si sale cruz la pierde todo.
-Debe permitir jugar hasta que el jugador decida abandonar el juego.
-El programa debe acumular y mostrar por pantalla:
-● El número de jugadas
-● Ganancias o pérdidas actuales del jugador (puede ser una cantidad negativa)
--->
-
 <h1>Doble o nada</h1>
 <p>En este juego de azar, el usuario debe apostar el dinero que el considere, despues se lanza una moneda,
      si sale cara, se dobla el dinero apostado, si sale cruz se pierde todo.</p>
@@ -79,10 +68,6 @@ El programa debe acumular y mostrar por pantalla:
 if(isset($_POST["logout"])) {
     session_destroy();
 }
-
-
-
 ?>
-
 </body>
 </html>
