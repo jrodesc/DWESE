@@ -19,6 +19,7 @@
             name="nota1"
             min='0'
             step='0.1'
+            max='10'
             value="n1" required>
         <label for="nota2">Nota 2</label>
         <input
@@ -28,6 +29,7 @@
             name="nota2"
             value="n2"
             min='0'
+            max='10'
             step='0.1'
             required>
         <label for="nota3">Nota 3</label>
@@ -38,6 +40,7 @@
             name="nota3"
             min='0'
             step='0.1'
+            max='10'
             value="n3" required>
         <button type="submit" class="btn-primary">
             Enviar

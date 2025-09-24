@@ -15,21 +15,27 @@
             class="form-control"
             id="circulo"
             name="figura"
-            value="circulo">
+            value="circulo"
+            min='0'
+            step='0.1'>
         <label for="circulo">Circulo</label>
         <input
             type="radio"
             class="form-control"
             id="triangulo"
             name="figura"
-            value="triangulo">
+            value="triangulo"
+            min='0'
+            step='0.1'>
         <label for="triangulo">Triangulo</label>
         <input
             type="radio"
             class="form-control"
             id="cuadrado"
             name="figura"
-            value="cuadrado">
+            value="cuadrado"
+            min='0'
+            step='0.1'>
         <label for="cuadrado">Cuadrado</label>
         <button type="submit" class="btn-primary">
             Enviar
