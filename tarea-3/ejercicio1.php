@@ -57,7 +57,7 @@ El programa debe acumular y mostrar por pantalla:
             $_SESSION["total"] = ($apuesta * 2) + $_SESSION["total"];
         } elseif($tirada == 0 && $_SESSION["total"] <= 0) {
             echo "cruz";
-            $_SESSION["total"] = $apuesta - $total;
+            $_SESSION["total"] = $apuesta - $_SESSION["total"];
         }
 
         echo "<br>";
