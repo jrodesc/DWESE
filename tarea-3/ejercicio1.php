@@ -46,7 +46,10 @@ session_start();
             $_SESSION["total"] = ($apuesta * 2) + $_SESSION["total"];
         } elseif($tirada == 0 && $_SESSION["total"] <= 0) {
             echo "cruz";
-            $_SESSION["total"] = $apuesta - $_SESSION["total"];
+            $_SESSION["total"] = $_SESSION["total"] - $apuesta;
+        } elseif($tirada == 0 && $_SESSION["total"] == 0) {
+            echo "cruz";
+            $_SESSION["total"] = $_SESSION["total"] - $apuesta;
         }
 
         echo "<br>";
@@ -60,8 +63,7 @@ session_start();
 
 
 <form action="ejercicio1.php" method="post">
-    <label>Logout</label>
-    <input type="submit" name="logout" value="logout">
+    <input type="submit" name="logout" value="reiniciar">
 </form>
 
 <?php
