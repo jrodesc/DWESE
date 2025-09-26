@@ -7,10 +7,19 @@
 </head>
 <body>
     <?php
-    $billete = $_REQUEST["billete"];
-    $edad = $_REQUEST["edad"];
-    $estudiante = $_REQUEST["estudiante"];
-    $numerosa = $_REQUEST["numerosa"];
+    $billete = $_POST["billete"];
+    $edad = $_POST["edad"];
+    if(!isset($_POST["estudiante"])) {
+        $estudiante = 0;
+    } else {
+        $estudiante = $_POST["estudiante"];
+    }
+    if(!isset($_POST["numerosa"])) {
+        $numerosa = 0;
+    } else {
+        $numerosa = $_POST["numerosa"];
+    }
+    
     $descuento = 0;
 
     function calculoDescuento($edad, $estudiante, $numerosa, $descuento) {

@@ -17,7 +17,7 @@
 
     $media = ($notas[0] + $notas[1]) / 2;
 
-    echo "La nota media del alumno es: $media"
+    echo "La nota media del alumno con las notas " . $notas[0] ." y " . $notas[1] ." es: $media"
     ?>
 
 
