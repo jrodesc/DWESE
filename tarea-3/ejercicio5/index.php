@@ -8,18 +8,6 @@
 </head>
 
 <body>
-
-    <!--
-Un número racional, fracciones, se caracteriza por tener un numerador y un denominador.
-Escribe un programa para operar con números racionales y simplificar los resultados. Se
-debe implementar como si fuera un menú, con un fichero por cada operación.
-Las operaciones a definir son:
-● Suma
-● Resta
-● Multiplicación
-● División
--->
-
     <form action="index.php" method="post">
         <label>Escoge el primer numerador:</label>
         <input type="number" name="numerador1" id="numerador1" required>
@@ -85,7 +73,7 @@ Las operaciones a definir son:
         }
 
         list($num, $den) = $resultado;
-        echo "$num/$den";
+        echo "Resultado: $num/$den";
     }
     ?>
 </body>
