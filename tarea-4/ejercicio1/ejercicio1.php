@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,15 +9,17 @@
 <?php
 
 //vamos a meter todos los valores en un array y dar el valor de multiplicarlo
-function factorial($x) {
+function factorial($x)
+{
     $numbers = [];
-    for($i = 1; $i != $x+1; $i++) {
-        $numbers[] = $i; 
+    for ($i = 1; $i != $x + 1; $i++) {
+        $numbers[] = $i;
     }
     return array_product($numbers);
 }
 
 ?>
+
 <body>
     <form action="ejercicio1.php" method="post">
         <label>Introduzca el valor m:</label>
@@ -29,12 +32,17 @@ function factorial($x) {
     </form>
 
     <?php
-    if(isset($_POST["calcular"])) {
+    if (isset($_POST["calcular"])) {
         $m = $_POST["m"];
         $n = $_POST["n"];
+        if ($m >= $n) {
+            $result = factorial($m) / (factorial($n) * factorial($m - $n));
+            echo "$result";
+        } else {
+            echo "la variable m debe ser mayor a n.";
+        }
     }
-    $result = factorial($m) / (factorial($n) * factorial($m-$n));
-    echo "$result";
+
     ?>
 </body>
 
