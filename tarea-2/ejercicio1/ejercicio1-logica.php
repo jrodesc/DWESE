@@ -50,7 +50,7 @@
             $radio = $_POST["radio"];
             $area = pi() * pow($radio, 2);
 
-            echo "El area del circulo es:" . round($area, 2);
+            echo "El area del circulo con ". $_POST["radio"] ." de radio, es:" . round($area, 2);
         }
     } elseif (comprobarUsuario($figura) == 1) {
         echo "<h1>Area del triangulo</h1>";
@@ -70,7 +70,7 @@
             $altura = $_POST["altura"];
             $area = ($base * $altura) / 2;
 
-            echo "El area del triangulo es:" . round($area, 2);
+            echo "El area del triangulo con ". $_POST["base"] ." de base y ". $_POST["altura"] ." de altura, es:" . round($area, 2);
         }
     } elseif (comprobarUsuario($figura) == 2) {
         echo "<h1>Area del Cuadrado</h1>";
@@ -87,7 +87,7 @@
             $lado = $_POST["lado"];
             $area = $lado * $lado;
 
-            echo "El area del cuadrado es:" . round($area, 2);
+            echo "El area del cuadrado con ". $_POST["lado"] ." de lado, es:" . round($area, 2);
         }
     } else {
         echo "No has introducido una figura";
