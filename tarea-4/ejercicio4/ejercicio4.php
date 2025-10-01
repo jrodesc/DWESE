@@ -8,7 +8,7 @@
 <body>
     <form action="ejercicio4.php" method="post">
         <label>Escoja el numero de terminos para calcular la serie:</label>
-        <input type="number" id="numero" name="numero" required min = >
+        <input type="number" id="numero" name="numero" required>
         <br>
         <input type="submit" id="calcular" name="calcular" value="calcular">
     </form>
