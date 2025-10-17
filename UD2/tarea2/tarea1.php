@@ -44,3 +44,39 @@ Delete-->
 </body>
 
 </html>
+
+<?php  
+    $operacion = $_REQUEST['figura'] ?? '';
+    if(isset($_POST["enviar"])) {
+        $operacion = $_POST["enviar"];
+    }
+
+    $resultado = comprobarOperacion($operacion);
+
+    //en funcion de que seleccione el usuario, se le redirigira a una pagina u otra donde tendra el formulario
+    //pertinente.
+    function comprobarOperacion($operacion) {
+        switch ($operacion) {
+            case "create":
+                return 0;
+                break;
+
+            case "read":
+                return 1;
+                break;
+
+            case "update":
+                return 2;
+                break;
+
+            case "delete":
+                return 3;
+                break;
+        }
+    }
+
+    echo "$resultado";
+
+    
+
+?>
