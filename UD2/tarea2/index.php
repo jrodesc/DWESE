@@ -16,7 +16,7 @@ Delete-->
 
 
     <!--Formulario para elegir cual de los CRUD se desea realizar-->
-    <form action="tarea1.php" method="post">
+    <form action="index.php" method="post">
         <legend>¿Que operacion desea realizar en la base de datos?</legend>
         <label>
             <input type="radio" name="crud" value="create">
@@ -46,37 +46,21 @@ Delete-->
 </html>
 
 <?php  
-    $operacion = $_REQUEST['figura'] ?? '';
-    if(isset($_POST["enviar"])) {
-        $operacion = $_POST["enviar"];
+    $operacion = $_POST['crud'] ?? '';
+
+    switch($operacion) {
+        case "create":
+            include_once("create.php");
+            break;
+        case "read":
+            include_once("read.php");
+            break;
+        case "update":
+            include_once("update.php");
+            break;
+        case "delete":
+            include_once("delete.php");
+            break;
+        // Si no hay operación, no hace nada (muestra el formulario)
     }
-
-    $resultado = comprobarOperacion($operacion);
-
-    //en funcion de que seleccione el usuario, se le redirigira a una pagina u otra donde tendra el formulario
-    //pertinente.
-    function comprobarOperacion($operacion) {
-        switch ($operacion) {
-            case "create":
-                return 0;
-                break;
-
-            case "read":
-                return 1;
-                break;
-
-            case "update":
-                return 2;
-                break;
-
-            case "delete":
-                return 3;
-                break;
-        }
-    }
-
-    echo "$resultado";
-
-    
-
-?>
+?> 
