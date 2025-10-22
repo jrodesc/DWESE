@@ -38,29 +38,41 @@ Delete-->
             Delete
         </label>
         <br>
+        <legend>Elige la tabla sobre la que realizar la operación.</legend>
+        <label>
+            <input type="radio" name="tabla" value="cliente">
+            Cliente
+        </label>
+        <br>
+        <label>
+            <input type="radio" name="tabla" value="empleado">
+            Empleado
+        </label>
+        <br>
+        <label>
+            <input type="radio" name="tabla" value="pedido">
+           Pedido 
+        </label>
+        <br>
+        <label>
+            <input type="radio" name="tabla" value="producto">
+           producto 
+        </label>
+        <br>
+        <label>
+            <input type="radio" name="tabla" value="detalle_pedido">
+            Detalle pedido 
+        </label>
         <input type="submit" value="enviar">
     </form>
 
 </body>
 
 </html>
+<?php
+$dwes = null;
+$config = parse_ini_file('./config.inc.ini');
+$dsn = 'mysql:host=' . $config['server'] . ';dbname=' . $config['base'];
+$dwes = new PDO($dsn, $config['usu'], $config['pas']);
 
-<?php  
-    $operacion = $_POST['crud'] ?? '';
-
-    switch($operacion) {
-        case "create":
-            include_once("create.php");
-            break;
-        case "read":
-            include_once("read.php");
-            break;
-        case "update":
-            include_once("update.php");
-            break;
-        case "delete":
-            include_once("delete.php");
-            break;
-        // Si no hay operación, no hace nada (muestra el formulario)
-    }
-?> 
+?>
