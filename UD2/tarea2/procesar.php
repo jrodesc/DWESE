@@ -100,14 +100,16 @@ try {
 
         echo '<a href="index.php">Volver al menú</a>';
         //FIN DE PROCESO DE LECTURA DE EMPLEADO
-    } else if($operacion === "update" && $tabla === "empleado") {
+        //-----------------------------------------
+        //INICIO DE PROCESO DE UPDATE DE EMPLEADO
+    } else if ($operacion === 'update' && $tabla === 'empleado'){
         $campos_requeridos = [
             "id_empleado",
             "usuario_empleado",
             "email_empleado",
             "dni_empleado",
             "f_nac_empleado"
-        ]; 
+        ];
 
         foreach ($campos_requeridos as $campo) {
             if (empty($_POST[$campo])) {
@@ -115,30 +117,214 @@ try {
             }
         }
 
-        $sql = "UPDATE empleado SET usuario_empleado = :usuario_empleado, email_empleado = :email_empleado, dni_empleado = :dni_empleado,
+        $sql = "UPDATE empleado 
+        SET usuario_empleado = :usuario_empleado, 
+        email_empleado = :email_empleado, 
+        dni_empleado = :dni_empleado,
          f_nac_empleado = :f_nac_empleado 
          WHERE id_empleado = :id_empleado";
 
         $stmt = $dwes->prepare($sql);
 
-        // Ejecutar con parámetros (previene SQL injection)
         $resultado = $stmt->execute([
-            'id_empleado' => $_POST['id_empleado'],
+            ':id_empleado' => $_POST['id_empleado'],
             ':usuario_empleado' => $_POST['usuario_empleado'],
             ':email_empleado' => $_POST['email_empleado'],
-            ':f_nac_empleado' => $_POST['f_nac_empleado']
+            ':f_nac_empleado' => $_POST['f_nac_empleado'],
+            ':dni_empleado' => $_POST['dni_empleado']
         ]);
 
         if ($resultado) {
-            echo "<h2>Empleado actualizado correctamente</h2>";
-            echo '<a href="index.php">Volver al menú</a>';
-        } else {
-            echo "<h2>El empleado no se ha actualizado, hubo un fallo</h2>";
-            echo '<a href="index.php">Volver al menú</a>';
+            $filas_afectadas = $stmt->rowCount();
+
+            if ($filas_afectadas > 0) {
+                echo "<h2>Empleado actualizado correctamente.</h2>";
+            } else {
+                echo "<h2>No se realizaron cambios.</h2>";
+            }
+            echo '<a href="index.php">Volver a inicio</a>';
         }
+    } else if($operacion === 'delete' && $tabla === 'empleado') {
+        $campos_requeridos = [
+            "id_empleado"
+        ];
+
+        foreach ($campos_requeridos as $campo) {
+            if(empty($_POST[$campo])) {
+                echo "No se han insertado los datos correctos, falta" . $campo;
+            }
+        }
+
+        $sql = "DELETE FROM empleado WHERE id_empleado = :id_empleado";
+
+        $stmt = $dwes->prepare($sql);
+
+        $resultado = $stmt->execute([
+            "id_empleado" => $_POST["id_empleado"]
+        ]);
+
+        if($resultado) {
+            echo "<h2>Empleado eliminado de manera exitosa</h2>";
+        } else {
+            echo "<h2>No se pudo eliminar al empleado.</h2>";
+        }
+        echo '<a href="index.php">Volver al menú</a>';
+        //--------------------------------------------------------
+    } else if($operacion === 'create' && $tabla === 'cliente') {
+        // Validar que todos los campos existen
+        $campos_requeridos = [
+            'usuario_cliente',
+            'email_cliente',
+            'pass_cliente',
+            'dni_cliente',
+            'f_nac_cliente'
+        ];
+
+        foreach ($campos_requeridos as $campo) {
+            if (empty($_POST[$campo])) {
+                die("Error: Falta el campo $campo");
+            }
+        }
+
+        // Hash de la contraseña (MUY IMPORTANTE)
+        $pass_hash = password_hash($_POST['pass_cliente'], PASSWORD_DEFAULT);
+
+        // Preparar consulta
+        $sql = "INSERT INTO cliente
+                (usuario_cliente, email_cliente, pass_cliente, dni_cliente, f_nac_cliente) 
+                VALUES (:usuario, :email, :pass, :dni, :fecha)";
+
+        $stmt = $dwes->prepare($sql);
+
+        // Ejecutar con parámetros (previene SQL injection)
+        $resultado = $stmt->execute([
+            ':usuario' => $_POST['usuario_cliente'],
+            ':email' => $_POST['email_cliente'],
+            ':pass' => $pass_hash,
+            ':dni' => strtoupper($_POST['dni_cliente']), // DNI en mayúsculas
+            ':fecha' => $_POST['f_nac_cliente']
+        ]);
+
+        if ($resultado) {
+            $id_insertado = $dwes->lastInsertId();
+            echo "<h2>Cliente creado correctamente</h2>";
+            echo "<p>ID asignado: $id_insertado</p>";
+        } else {
+            echo "<h2>Cliente no se ha creado correctamente</h2>";
+        }
+        echo '<a href="index.php">Volver al menú</a>';
+
+    } else if ($operacion === "read" && $tabla === "cliente") {
+        //validamos que existe el id requerido.
+        $campo_requerido = ['id_cliente'];
+
+        foreach ($campo_requerido as $campo) {
+            if (empty($_POST[$campo])) {
+                die("Error: Falta el campo $campo");
+            }
+        }
+
+        $sql = "SELECT * FROM cliente WHERE id_cliente = :id_cliente ";
+        $stmt = $dwes->prepare($sql);
+
+
+        $resultado = $stmt->execute([
+            ':id_cliente' => $_POST['id_cliente']
+        ]);
+        $stmt->execute([
+            ':id_cliente' => $_POST['id_cliente']
+        ]);
+
+        // IMPORTANTE: Obtener el resultado
+        $cliente = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($cliente) {
+            // Empleado encontrado - mostrar datos
+            echo "<h2>Datos del cliente</h2>";
+            echo "<table border='1'>";
+            echo "<tr><th>Campo</th><th>Valor</th></tr>";
+            echo "<tr><td>ID</td><td>" . htmlspecialchars($cliente['id_cliente']) . "</td></tr>";
+            echo "<tr><td>Usuario</td><td>" . htmlspecialchars($cliente['usuario_cliente']) . "</td></tr>";
+            echo "<tr><td>Email</td><td>" . htmlspecialchars($cliente['email_cliente']) . "</td></tr>";
+            echo "<tr><td>DNI</td><td>" . htmlspecialchars($cliente['dni_cliente']) . "</td></tr>";
+            echo "<tr><td>Fecha Nacimiento</td><td>" . htmlspecialchars($cliente['f_nac_cliente']) . "</td></tr>";
+            echo "</table>";
+            // NO mostramos la contraseña por seguridad
+        } else {
+            // Empleado no encontrado
+            echo "<h2>No se encontró ningún cliente con ID: " . htmlspecialchars($_POST['id_cliente']) . "</h2>";
+        }
+
+        echo '<a href="index.php">Volver al menú</a>';
+    } else if($operacion === 'update' && $tabla === 'cliente') {
+        $campos_requeridos = [
+            "id_cliente",
+            "usuario_cliente",
+            "email_cliente",
+            "dni_cliente",
+            "f_nac_cliente"
+        ];
+
+        foreach ($campos_requeridos as $campo) {
+            if (empty($_POST[$campo])) {
+                die("Error: Falta el campo $campo");
+            }
+        }
+
+        $sql = "UPDATE cliente 
+        SET usuario_cliente = :usuario_cliente, 
+        email_cliente = :email_cliente, 
+        dni_cliente = :dni_cliente,
+         f_nac_cliente = :f_nac_cliente 
+         WHERE id_cliente = :id_cliente";
+
+        $stmt = $dwes->prepare($sql);
+
+        $resultado = $stmt->execute([
+            ':id_cliente' => $_POST['id_cliente'],
+            ':usuario_cliente' => $_POST['usuario_cliente'],
+            ':email_cliente' => $_POST['email_cliente'],
+            ':f_nac_cliente' => $_POST['f_nac_cliente'],
+            ':dni_cliente' => $_POST['dni_cliente']
+        ]);
+
+        if ($resultado) {
+            $filas_afectadas = $stmt->rowCount();
+
+            if ($filas_afectadas > 0) {
+                echo "<h2>Cliente actualizado correctamente.</h2>";
+            } else {
+                echo "<h2>No se realizaron cambios.</h2>";
+            }
+            echo '<a href="index.php">Volver a inicio</a>';
+        }
+    } else if($operacion === 'delete' && $tabla === 'cliente') {
+        $campos_requeridos = [
+            "id_cliente"
+        ];
+
+        foreach ($campos_requeridos as $campo) {
+            if(empty($_POST[$campo])) {
+                echo "No se han insertado los datos correctos, falta" . $campo;
+            }
+        }
+
+        $sql = "DELETE FROM cliente WHERE id_cliente = :id_cliente";
+
+        $stmt = $dwes->prepare($sql);
+
+        $resultado = $stmt->execute([
+            "id_cliente" => $_POST["id_cliente"]
+        ]);
+
+        if($resultado) {
+            echo "<h2>Cliente eliminado de manera exitosa</h2>";
+        } else {
+            echo "<h2>No se pudo eliminar al cliente.</h2>";
+        }
+        echo '<a href="index.php">Volver al menú</a>';
     }
 
-    // Aquí irían otros casos: create+cliente, update+producto, etc.
 
 } catch (PDOException $e) {
     // Detectar errores específicos
