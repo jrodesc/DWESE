@@ -141,9 +141,9 @@ if ($operacion === 'read' && $tabla === 'empleado') {
 
     </html>
 <?php
-} else if($operacion === 'delete' && $tabla === 'empleado') {
+} else if ($operacion === 'delete' && $tabla === 'empleado') {
 ?>
-<!DOCTYPE html>
+    <!DOCTYPE html>
     <html lang="en">
 
     <head>
@@ -174,9 +174,9 @@ if ($operacion === 'read' && $tabla === 'empleado') {
 //-------------------------------------------------------------
 //Formularios de Cliente
 //-------------------------------------------------------------
-else if($operacion === "create" && $tabla === "cliente") {
+else if ($operacion === "create" && $tabla === "cliente") {
 ?>
-<!DOCTYPE html>
+    <!DOCTYPE html>
     <html lang="es">
 
     <head>
@@ -225,11 +225,12 @@ else if($operacion === "create" && $tabla === "cliente") {
             <a href="index.php">Cancelar</a>
         </form>
     </body>
+
     </html>
 <?php
-} else if($operacion === 'read' && $tabla === 'cliente') {
+} else if ($operacion === 'read' && $tabla === 'cliente') {
 ?>
-<!DOCTYPE html>
+    <!DOCTYPE html>
     <html lang="es">
 
     <head>
@@ -255,11 +256,11 @@ else if($operacion === "create" && $tabla === "cliente") {
     </body>
 
     </html>
-  
-<?php  
-} else if($operacion === 'update' && $tabla === 'cliente') {
+
+<?php
+} else if ($operacion === 'update' && $tabla === 'cliente') {
 ?>
-<!DOCTYPE html>
+    <!DOCTYPE html>
     <html lang="en">
 
     <head>
@@ -307,7 +308,7 @@ else if($operacion === "create" && $tabla === "cliente") {
     </html>
 
 <?php
-} else if($operacion === 'delete' && $tabla === 'cliente') {
+} else if ($operacion === 'delete' && $tabla === 'cliente') {
 ?>
 
     <!DOCTYPE html>
@@ -334,60 +335,342 @@ else if($operacion === "create" && $tabla === "cliente") {
             <a href="index.php">Cancelar</a>
         </form>
     </body>
+
     </html>
 
 <?php
-} else if($operacion === 'create' && $tabla === 'producto') {
+} else if ($operacion === 'create' && $tabla === 'producto') {
+?>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Crear producto</title>
+    </head>
+
+    <body>
+        <h2>Crear producto</h2>
+        <form action="procesar.php" method="post">
+            <input type="hidden" name="crud" value="create">
+            <input type="hidden" name="tabla" value="producto">
+
+            <label>
+                Categoria del producto
+                <select name="categoria_producto" id="categoria">
+                    <option value="ropa">Ropa</option>
+                    <option value="libros">Libros</option>
+                    <option value="hogar">Hogar</option>
+                    <option value="electronica">Electronica</option>
+                    <option value="deporte">deporte</option>
+                </select>
+            </label>
+            <br>
+            <label>
+                Nombre del producto
+                <input type="text" name="nombre_producto">
+            </label>
+            <br>
+            <label>
+                Precio del producto
+                <input type="number" name="precio_producto">
+            </label>
+            <br>
+            <label>
+                Stock del producto
+                <input type="number" name="stock_producto">
+            </label>
+            <br>
+            <label>
+                Descripcion del producto
+                <input type="text" name="descripcion_producto">
+            </label>
+            <br>
+            <input type="submit" value="crear producto">
+            <a href="index.php">Cancelar</a>
+        </form>
+    </body>
+
+    </html>
+
+<?php
+} else if ($operacion === 'read' && $tabla === 'producto') {
+?>
+    <!DOCTYPE html>
+    <html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Read sobre producto</title>
+    </head>
+
+    <body>
+        <h2>Vision de informacion del producto</h2>
+        <form action="procesar.php" method="post">
+            <input type="hidden" name="crud" value="read">
+            <input type="hidden" name="tabla" value="producto">
+
+            <label>
+                ID:
+                <input type="text" name="id_producto" required maxlength="40" require>
+            </label>
+            <br>
+
+            <input type="submit" value="Buscar producto">
+            <a href="index.php">Cancelar</a>
+        </form>
+    </body>
+
+    </html>
+<?php
+} else if ($operacion === 'update' && $tabla === 'producto') {
+?>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Update producto</title>
+    </head>
+
+    <body>
+        <h2>Actualizar informacion del producto</h2>
+        <form action="procesar.php" method="post">
+            <input type="hidden" name="crud" value="update">
+            <input type="hidden" name="tabla" value="producto">
+
+            <label>
+                Seleccione el id del producto a Actualizar
+                <input type="text" name="id_producto">
+            </label>
+            <br>
+            <label>
+                Seleccione la nueva categoria del producto
+                <select name="categoria_producto" id="categoria_producto">
+                    <option value="ropa">Ropa</option>
+                    <option value="libros">Libros</option>
+                    <option value="hogar">Hogar</option>
+                    <option value="electronica">Electronica</option>
+                    <option value="deporte">deporte</option>
+                </select>
+            </label>
+            <br>
+            <label>
+                Seleccione el nuevo nombre del producto
+                <input type="text" name="nombre_producto">
+            </label>
+            <br>
+            <label>
+                Seleccione el nuevo precio del producto
+                <input type="number" name="precio_producto">
+            </label>
+            <br>
+            <label>
+                Seleccione el nuevo stock del producto
+                <input type="number" name="stock_producto">
+            </label>
+            <br>
+            <label>
+                Seleccione la nueva descripcion del producto
+                <input type="text" name="descripcion_producto">
+            </label>
+            <input type="submit" value="Actualizar producto">
+            <a href="index.php">Cancelar</a>
+        </form>
+    </body>
+
+    </html>
+<?php
+} else if ($operacion === 'delete' && $tabla === 'producto') {
+?>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Eliminar producto</title>
+    </head>
+
+    <body>
+        <h2>Eliminar producto</h2>
+        <form action="procesar.php" method="post">
+            <input type="hidden" name="crud" value="delete">
+            <input type="hidden" name="tabla" value="producto">
+
+            <label>
+                Seleccione el id del producto a borrar
+                <input type="text" name="id_producto">
+            </label>
+            <br>
+            <input type="submit" value="Eliminar producto">
+            <a href="index.php">Cancelar</a>
+        </form>
+    </body>
+
+    </html>
+
+<?php
+} else if ($operacion === 'create' && $tabla === 'pedido') {
+?>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Create pedido</title>
+    </head>
+
+    <body>
+        <h2>Creacion de un pedido</h2>
+        <form action="procesar.php" method="post">
+            <input type="hidden" name="crud" value="create">
+            <input type="hidden" name="tabla" value="pedido">
+
+            <label>
+                Fecha :
+                <input type="date" name="fecha_ped" required maxlength="40">
+            </label>
+            <br>
+
+            <label>
+                Hora:
+                <input type="time" name="hora_ped" required>
+            </label>
+            <br>
+
+            <label>
+                Cliente:
+                <input type="text" name="cliente" required>
+            </label>
+            <br>
+
+            <label>
+                Empleado:
+                <input type="text" name="empleado" required>
+            </label>
+            <br>
+            <input type="submit" value="Crear pedido">
+            <a href="index.php">Cancelar</a>
+        </form>
+    </body>
+
+    </html>
+
+<?php
+} else if ($operacion === 'read' && $tabla === 'pedido') {
+?>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>read pedido</title>
+    </head>
+
+    <body>
+        <h2>Consultar pedido</h2>
+        <form action="procesar.php" method="post">
+            <input type="hidden" name="crud" value="read">
+            <input type="hidden" name="tabla" value="pedido">
+
+            <label>
+                Id del pedido:
+                <input type="number" name="id_pedido">
+            </label>
+            <br>
+            <input type="submit" value="Consultar pedido" id="consulta_pedido">
+        </form>
+    </body>
+
+    </html>
+
+<?php
+} else if($operacion === 'update' && $tabla === 'pedido') {
 ?>
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear producto</title>
-</head>
-<body>
-    <h2>Crear producto</h2>
-    <form action="procesar.php" method="post">
-        <input type="hidden" name = "crud" value = "create">
-        <input type="hidden" name = "tabla" value = "producto">
+    <html lang="en">
 
-        <label>
-            Categoria del producto
-            <select name="categoria" id="categoria">
-                <option value="ropa">Ropa</option>
-                <option value="libros">Libros</option>
-                <option value="hogar">Hogar</option>
-                <option value="electronica">Electronica</option>
-                <option value="deporte">deporte</option>
-            </select>
-        </label>
-        <br>
-        <label>
-            Nombre del producto
-            <input type="text" name="nombre_producto">
-        </label>
-        <br>
-        <label>
-            Precio del producto
-            <input type="number" name="precio_producto">
-        </label>
-        <br>
-        <label>
-            Stock del producto
-            <input type="number" name="stock_producto">
-        </label>
-        <br>
-        <label>
-            Descripcion del producto
-            <input type="text" name="descripcion_producto">
-        </label>
-        <br>
-        <input type="submit" value="crear producto">
-        <a href="index.php">Cancelar</a>
-    </form>
-</body>
-</html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Update pedido </title>
+    </head>
+
+    <body>
+        <h2>Actualizar informacion del pedido</h2>
+        <form action="procesar.php" method="post">
+            <input type="hidden" name="crud" value="update">
+            <input type="hidden" name="tabla" value="pedido">
+
+            <label>
+                Seleccione el id del pedido a Actualizar
+                <input type="text" name="id_pedido">
+            </label>
+            <br>
+            <label>
+                Seleccione la nueva fecha de pedido
+                <input type="date" name="fecha_ped">
+            </label>
+            <br>
+            <label>
+                Seleccione la nueva hora del pedido
+                <input type="time" name="hora_ped">
+            </label>
+            <br>
+            <label>
+                Seleccione el nuevo id de cliente
+                <input type="number" name="cliente">
+            </label>
+            <br>
+            <label>
+                Seleccione el nuevo id de empleado 
+                <input type="number" name="empleado">
+            </label>
+            <input type="submit" value="Actualizar pedido">
+            <a href="index.php">Cancelar</a>
+        </form>
+    </body>
+
+    </html>
+
+
+<?php
+} else if($operacion === 'delete' && $tabla === 'pedido') {
+?>
+<!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Eliminar pedido</title>
+    </head>
+
+    <body>
+        <h2>Eliminar pedido</h2>
+        <form action="procesar.php" method="post">
+            <input type="hidden" name="crud" value="delete">
+            <input type="hidden" name="tabla" value="pedido">
+
+            <label>
+                Seleccione el id del producto a borrar
+                <input type="text" name="id_pedido">
+            </label>
+            <br>
+            <input type="submit" value="Eliminar producto">
+            <a href="index.php">Cancelar</a>
+        </form>
+    </body>
+
+    </html>
+<?php
+} else if($operacion === 'create' && $tabla === 'detalle_pedido') {
+?>
 
 <?php
 }
