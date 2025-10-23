@@ -590,9 +590,9 @@ else if ($operacion === "create" && $tabla === "cliente") {
     </html>
 
 <?php
-} else if($operacion === 'update' && $tabla === 'pedido') {
+} else if ($operacion === 'update' && $tabla === 'pedido') {
 ?>
-<!DOCTYPE html>
+    <!DOCTYPE html>
     <html lang="en">
 
     <head>
@@ -628,7 +628,7 @@ else if ($operacion === "create" && $tabla === "cliente") {
             </label>
             <br>
             <label>
-                Seleccione el nuevo id de empleado 
+                Seleccione el nuevo id de empleado
                 <input type="number" name="empleado">
             </label>
             <input type="submit" value="Actualizar pedido">
@@ -640,9 +640,9 @@ else if ($operacion === "create" && $tabla === "cliente") {
 
 
 <?php
-} else if($operacion === 'delete' && $tabla === 'pedido') {
+} else if ($operacion === 'delete' && $tabla === 'pedido') {
 ?>
-<!DOCTYPE html>
+    <!DOCTYPE html>
     <html lang="en">
 
     <head>
@@ -669,13 +669,168 @@ else if ($operacion === "create" && $tabla === "cliente") {
 
     </html>
 <?php
-} else if($operacion === 'create' && $tabla === 'detalle_pedido') {
+} else if ($operacion === 'create' && $tabla === 'detalle_pedido') {
 ?>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Create detalle_pedido</title>
+    </head>
+
+    <body>
+        <h2>Creacion de un detalle_pedido</h2>
+        <form action="procesar.php" method="post">
+            <input type="hidden" name="crud" value="create">
+            <input type="hidden" name="tabla" value="detalle_pedido">
+
+            <label>
+                id del pedido
+                <input type="number" name="id_pedido" required maxlength="40">
+            </label>
+            <br>
+
+            <label>
+                cantidad:
+                <input type="number" name="cantidad" required>
+            </label>
+            <br>
+
+            <label>
+                id_producto:
+                <input type="number" name="id_prod" required>
+            </label>
+            <br>
+
+            <label>
+                Precio:
+                <input type="number" name="precio" required>
+            </label>
+            <br>
+            <label>
+                total:
+                <input type="number" name="total" required>
+            </label>
+
+            <input type="submit" value="Crear detalle_pedido">
+            <a href="index.php">Cancelar</a>
+        </form>
+    </body>
+
+    </html>
+<?php
+} else if ($operacion === 'read' && $tabla === 'detalle_pedido') {
+?>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>read pedido</title>
+    </head>
+
+    <body>
+        <h2>Consultar detalle pedido</h2>
+        <form action="procesar.php" method="post">
+            <input type="hidden" name="crud" value="read">
+            <input type="hidden" name="tabla" value="detalle_pedido">
+
+            <label>
+                Id del detalle de pedido:
+                <input type="number" name="id_ped">
+            </label>
+            <br>
+            <input type="submit" value="Consultar detalle pedido">
+        </form>
+    </body>
+
+    </html>
 
 <?php
+} else if ($operacion === 'update' && $tabla === 'detalle_pedido') {
+?>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Update pedido </title>
+    </head>
+
+    <body>
+        <h2>Actualizar informacion del pedido</h2>
+        <form action="procesar.php" method="post">
+            <input type="hidden" name="crud" value="update">
+            <input type="hidden" name="tabla" value="detalle_pedido">
+
+            <label>
+                Seleccione el id del detalle de pedido a Actualizar
+                <input type="number" name="id_detalle">
+            </label>
+            <br>
+            <label>
+                Seleccione el nuevo id de pedido
+                <input type="number" name="id_ped">
+            </label>
+            <br>
+            <label>
+                Seleccione la nueva cantidad
+                <input type="number" name="cantidad">
+            </label>
+            <br>
+            <label>
+                Seleccione el nuevo id de producto
+                <input type="number" name="id_prod">
+            </label>
+            <br>
+            <label>
+                Seleccione el nuevo precio
+                <input type="number" name="precio">
+            </label>
+            <br>
+            <label>
+                Seleccione el nuevo total
+                <input type="number" name="total">
+            </label>
+            <br>
+            <input type="submit" value="Actualizar pedido">
+            <a href="index.php">Cancelar</a>
+        </form>
+    </body>
+
+    </html>
+<?php
+} else if($operacion === 'delete' && $tabla === 'detalle_pedido') {
+?>
+<!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Eliminar pedido</title>
+    </head>
+
+    <body>
+        <h2>Eliminar pedido</h2>
+        <form action="procesar.php" method="post">
+            <input type="hidden" name="crud" value="delete">
+            <input type="hidden" name="tabla" value="detalle_pedido">
+
+            <label>
+                Seleccione el id del detalle de producto a borrar
+                <input type="text" name="id_detalle">
+            </label>
+            <br>
+            <input type="submit" value="Eliminar detalle producto">
+            <a href="index.php">Cancelar</a>
+        </form>
+    </body>
+    </html>
+<?php  
 }
-//read de cliente
-
-
-
 ?>

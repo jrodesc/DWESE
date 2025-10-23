@@ -350,7 +350,7 @@ try {
             ':categoria' => $_POST['categoria_producto'],
             ':nombre' => $_POST['nombre_producto'],
             ':precio' => $_POST['precio_producto'],
-            ':stock' => $_POST['stock_producto'], 
+            ':stock' => $_POST['stock_producto'],
             ':descripcion' => $_POST['descripcion_producto']
         ]);
 
@@ -360,7 +360,7 @@ try {
             echo "<p>ID asignado: $id_insertado</p>";
             echo '<a href="index.php">Volver al menú</a>';
         }
-    } else if($operacion === 'read' && $tabla === 'producto') {
+    } else if ($operacion === 'read' && $tabla === 'producto') {
         $campos_requerido = 'id_producto';
 
         $sql = "SELECT * FROM producto WHERE id_producto = :id";
@@ -389,8 +389,8 @@ try {
             echo "<h2>No se encontró ningún producto con ID: " . htmlspecialchars($_POST['id_producto']) . "</h2>";
         }
 
-        echo '<a href="index.php">Volver al menú</a>'; 
-    } else if($operacion === 'update' && $tabla === 'producto') {
+        echo '<a href="index.php">Volver al menú</a>';
+    } else if ($operacion === 'update' && $tabla === 'producto') {
         $campos_requeridos = [
             "id_producto",
             "categoria_producto",
@@ -435,7 +435,7 @@ try {
             }
             echo '<a href="index.php">Volver a inicio</a>';
         }
-    } else if($operacion === 'delete' && $tabla === 'producto') {
+    } else if ($operacion === 'delete' && $tabla === 'producto') {
         $campos_requeridos = [
             "id_producto"
         ];
@@ -460,16 +460,16 @@ try {
             echo "<h2>No se pudo eliminar al cliente.</h2>";
         }
         echo '<a href="index.php">Volver al menú</a>';
-    } else if($operacion === 'create' && $tabla === 'pedido') {
+    } else if ($operacion === 'create' && $tabla === 'pedido') {
         $campos_requeridos = [
-            "fecha_ped", 
-            "hora_ped", 
+            "fecha_ped",
+            "hora_ped",
             "cliente",
             "empleado"
         ];
 
-        foreach($campos_requeridos as $campo) {
-            if(empty($_POST[$campo])) {
+        foreach ($campos_requeridos as $campo) {
+            if (empty($_POST[$campo])) {
                 echo "No se ha insertado el campo " . $campo;
             }
         }
@@ -484,7 +484,7 @@ try {
             ':fecha_ped' => $_POST['fecha_ped'],
             ':hora_ped' => $_POST['hora_ped'],
             ':cliente' => $_POST['cliente'],
-            ':empleado' => $_POST['empleado'], 
+            ':empleado' => $_POST['empleado'],
         ]);
 
         if ($resultado) {
@@ -493,13 +493,11 @@ try {
             echo "<p>ID asignado: $id_insertado</p>";
             echo '<a href="index.php">Volver al menú</a>';
         }
-
-
-    } else if($operacion === 'read' && $tabla === 'pedido') {
+    } else if ($operacion === 'read' && $tabla === 'pedido') {
         $campos_requerido = 'id_pedido';
 
-    // Aquí usamos JOIN para obtener información relacionada
-    $sql = "SELECT 
+        // Aquí usamos JOIN para obtener información relacionada
+        $sql = "SELECT 
                 p.id_pedido,
                 p.fecha_ped,
                 p.hora_ped,
@@ -516,43 +514,43 @@ try {
             INNER JOIN empleado e ON p.empleado = e.id_empleado
             WHERE p.id_pedido = :id";
 
-    $stmt = $dwes->prepare($sql);
+        $stmt = $dwes->prepare($sql);
 
-    $stmt->execute([
-        ':id' => $_POST['id_pedido']
-    ]);
+        $stmt->execute([
+            ':id' => $_POST['id_pedido']
+        ]);
 
-    // IMPORTANTE: Obtener el resultado
-    $pedido = $stmt->fetch(PDO::FETCH_ASSOC);
+        // IMPORTANTE: Obtener el resultado
+        $pedido = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($pedido) {
-        // Pedido encontrado - mostrar datos
-        echo "<h2>Datos del pedido</h2>";
-        echo "<table border='1'>";
-        echo "<tr><th>Campo</th><th>Valor</th></tr>";
-        echo "<tr><td>ID Pedido</td><td>" . htmlspecialchars($pedido['id_pedido']) . "</td></tr>";
-        echo "<tr><td>Fecha</td><td>" . htmlspecialchars($pedido['fecha_ped']) . "</td></tr>";
-        echo "<tr><td>Hora</td><td>" . htmlspecialchars($pedido['hora_ped']) . "</td></tr>";
-        
-        echo "<tr><th colspan='2'>Información del Cliente</th></tr>";
-        echo "<tr><td>ID Cliente</td><td>" . htmlspecialchars($pedido['cliente']) . "</td></tr>";
-        echo "<tr><td>Usuario Cliente</td><td>" . htmlspecialchars($pedido['usuario_cliente']) . "</td></tr>";
-        echo "<tr><td>Email Cliente</td><td>" . htmlspecialchars($pedido['email_cliente']) . "</td></tr>";
-        echo "<tr><td>DNI Cliente</td><td>" . htmlspecialchars($pedido['dni_cliente']) . "</td></tr>";
-        
-        echo "<tr><th colspan='2''>Información del Empleado</th></tr>";
-        echo "<tr><td>ID Empleado</td><td>" . htmlspecialchars($pedido['empleado']) . "</td></tr>";
-        echo "<tr><td>Usuario Empleado</td><td>" . htmlspecialchars($pedido['usuario_empleado']) . "</td></tr>";
-        echo "<tr><td>Email Empleado</td><td>" . htmlspecialchars($pedido['email_empleado']) . "</td></tr>";
-        echo "<tr><td>DNI Empleado</td><td>" . htmlspecialchars($pedido['dni_empleado']) . "</td></tr>";
-        
-        echo "</table>";
-    } else {
-        echo "<h2>No se encontró ningún pedido con ID: " . htmlspecialchars($_POST['id_pedido']) . "</h2>";
-    }
+        if ($pedido) {
+            // Pedido encontrado - mostrar datos
+            echo "<h2>Datos del pedido</h2>";
+            echo "<table border='1'>";
+            echo "<tr><th>Campo</th><th>Valor</th></tr>";
+            echo "<tr><td>ID Pedido</td><td>" . htmlspecialchars($pedido['id_pedido']) . "</td></tr>";
+            echo "<tr><td>Fecha</td><td>" . htmlspecialchars($pedido['fecha_ped']) . "</td></tr>";
+            echo "<tr><td>Hora</td><td>" . htmlspecialchars($pedido['hora_ped']) . "</td></tr>";
 
-    echo '<a href="index.php">Volver al menú</a>'; 
-    }else if($operacion === 'update' && $tabla === 'pedido') {
+            echo "<tr><th colspan='2'>Información del Cliente</th></tr>";
+            echo "<tr><td>ID Cliente</td><td>" . htmlspecialchars($pedido['cliente']) . "</td></tr>";
+            echo "<tr><td>Usuario Cliente</td><td>" . htmlspecialchars($pedido['usuario_cliente']) . "</td></tr>";
+            echo "<tr><td>Email Cliente</td><td>" . htmlspecialchars($pedido['email_cliente']) . "</td></tr>";
+            echo "<tr><td>DNI Cliente</td><td>" . htmlspecialchars($pedido['dni_cliente']) . "</td></tr>";
+
+            echo "<tr><th colspan='2''>Información del Empleado</th></tr>";
+            echo "<tr><td>ID Empleado</td><td>" . htmlspecialchars($pedido['empleado']) . "</td></tr>";
+            echo "<tr><td>Usuario Empleado</td><td>" . htmlspecialchars($pedido['usuario_empleado']) . "</td></tr>";
+            echo "<tr><td>Email Empleado</td><td>" . htmlspecialchars($pedido['email_empleado']) . "</td></tr>";
+            echo "<tr><td>DNI Empleado</td><td>" . htmlspecialchars($pedido['dni_empleado']) . "</td></tr>";
+
+            echo "</table>";
+        } else {
+            echo "<h2>No se encontró ningún pedido con ID: " . htmlspecialchars($_POST['id_pedido']) . "</h2>";
+        }
+
+        echo '<a href="index.php">Volver al menú</a>';
+    } else if ($operacion === 'update' && $tabla === 'pedido') {
         $campos_requeridos = [
             "id_pedido",
             "fecha_ped",
@@ -561,8 +559,8 @@ try {
             "empleado"
         ];
 
-        foreach($campos_requeridos as $campo) {
-            if(empty($_POST[$campo])) {
+        foreach ($campos_requeridos as $campo) {
+            if (empty($_POST[$campo])) {
                 echo "Error: falta el campo: " . $campo;
             }
         }
@@ -594,13 +592,11 @@ try {
             }
             echo '<a href="index.php">Volver a inicio</a>';
         }
-
-
     } else if ($operacion === 'delete' && $tabla === 'pedido') {
         $campos_requeridos = ["id_pedido"];
 
-        foreach($campos_requeridos as $campo) {
-            if(empty($_POST[$campo])) {
+        foreach ($campos_requeridos as $campo) {
+            if (empty($_POST[$campo])) {
                 echo "Error: falta el campo: " . $campo;
             }
         }
@@ -620,7 +616,7 @@ try {
             echo "<h2>No se pudo eliminar al pedido.</h2>";
         }
         echo '<a href="index.php">Volver al menú</a>';
-    } else if($operacion === 'create' && $tabla === 'detalle_pedido' ) {
+    } else if ($operacion === 'create' && $tabla === 'detalle_pedido') {
         $campos_requeridos = [
             "id_pedido",
             "cantidad",
@@ -630,23 +626,22 @@ try {
         ];
 
 
-        foreach($campos_requeridos as $campo) {
-            if(empty($_POST[$campo])) {
-                echo "Error: falta el campo" . $campo;
+        foreach ($campos_requeridos as $campo) {
+            if (empty($_POST[$campo])) {
+                echo "Error: falta el campo: " . $campo;
             }
         }
 
-        $sql = "INSERT INTO detalle_pedido (id_pedido, cantidad, id_prod, precio, total) 
+        $sql = "INSERT INTO detalle_pedido (id_ped, cantidad, id_prod, precio, total) 
         VALUES (:id_pedido, :cantidad, :id_prod, :precio, :total)";
 
         $stmt = $dwes->prepare($sql);
 
-        // Ejecutar con parámetros (previene SQL injection)
         $resultado = $stmt->execute([
             ':id_pedido' => $_POST['id_pedido'],
             ':cantidad' => $_POST['cantidad'],
             ':id_prod' => $_POST['id_prod'],
-            ':precio' => $_POST['precio'], 
+            ':precio' => $_POST['precio'],
             ':total' => $_POST['total']
         ]);
 
@@ -656,8 +651,136 @@ try {
             echo "<p>ID asignado: $id_insertado</p>";
             echo '<a href="index.php">Volver al menú</a>';
         }
+    } else if ($operacion === 'read' && $tabla === 'detalle_pedido') {
+        $campos_requerido = 'id_ped';
+
+        $sql = "SELECT 
+                dp.id_detalle,
+                dp.cantidad,
+                dp.precio,
+                dp.total,
+                pr.id_producto,
+                pr.nombre_producto,
+                pr.categoria_producto
+            FROM detalle_pedido dp
+            INNER JOIN producto pr ON dp.id_prod = pr.id_producto
+            WHERE dp.id_ped = :id
+            ORDER BY dp.id_detalle";
+
+        $stmt = $dwes->prepare($sql);
+
+        $stmt->execute([
+            ':id' => $_POST['id_ped']
+        ]);
+
+        // IMPORTANTE: Obtener el resultado
+        $detalles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (count($detalles) > 0) {
+            echo "<h2>Detalles del pedido #" . htmlspecialchars($_POST['id_ped']) . "</h2>";
+            echo "<table border='1'>";
+            echo "<tr>
+                <th>ID Detalle</th>
+                <th>Producto</th>
+                <th>Categoría</th>
+                <th>Cantidad</th>
+                <th>Precio Unit.</th>
+                <th>Total</th>
+              </tr>";
+
+            $total_pedido = 0;
+            foreach ($detalles as $detalle) {
+                echo "<tr>";
+                echo "<td>" . htmlspecialchars($detalle['id_detalle']) . "</td>";
+                echo "<td>" . htmlspecialchars($detalle['nombre_producto']) . "</td>";
+                echo "<td>" . htmlspecialchars($detalle['categoria_producto']) . "</td>";
+                echo "<td>" . htmlspecialchars($detalle['cantidad']) . "</td>";
+                echo "<td>€" . htmlspecialchars($detalle['precio']) . "</td>";
+                echo "<td>€" . htmlspecialchars($detalle['total']) . "</td>";
+                echo "</tr>";
+
+                $total_pedido += $detalle['total'];
+            }
+
+            echo "<tr>";
+            echo "<td colspan='5' style='text-align: right;'><strong>TOTAL PEDIDO:</strong></td>";
+            echo "<td><strong>€" . number_format($total_pedido, 2) . "</strong></td>";
+            echo "</tr>";
+            echo "</table>";
+        } else {
+            echo "<h2>No se encontraron detalles para el pedido ID: " . htmlspecialchars($_POST['id_ped']) . "</h2>";
+        }
+
+        echo '<a href="index.php">Volver al menú</a>';
+    } else if ($operacion === 'update' && $tabla === 'detalle_pedido') {
+        $campos_requeridos = [
+            "id_detalle",
+            "id_ped",
+            "cantidad",
+            "id_prod",
+            "precio",
+            "total"
+        ];
+
+        foreach ($campos_requeridos as $campo) {
+            if (empty($_POST[$campo])) {
+                echo "Error: falta el campo: " . $campo;
+            }
+        }
+
+        $sql = "UPDATE detalle_pedido 
+        SET id_ped = :id_ped, 
+        cantidad = :cantidad, 
+        id_prod = :id_prod,
+        precio = :precio,
+        total = :total
+         WHERE id_detalle = :id";
+
+        $stmt = $dwes->prepare($sql);
+
+        $resultado = $stmt->execute([
+            ':id_ped' => $_POST['id_ped'],
+            ':cantidad' => $_POST['cantidad'],
+            ':id_prod' => $_POST['id_prod'],
+            ':precio' => $_POST['precio'],
+            ':total' => $_POST['total'],
+            ':id' => $_POST['id_detalle']
+        ]);
+
+        if ($resultado) {
+            $filas_afectadas = $stmt->rowCount();
+
+            if ($filas_afectadas > 0) {
+                echo "<h2>Pedido actualizado correctamente.</h2>";
+            } else {
+                echo "<h2>No se realizaron cambios.</h2>";
+            }
+            echo '<a href="index.php">Volver a inicio</a>';
+        }
+    } else if ($operacion === 'delete' && $tabla === 'detalle_pedido') {
+        $campos_requeridos = ["id_detalle"];
+
+        foreach ($campos_requeridos as $campo) {
+            if (empty($_POST[$campo])) {
+                echo "Error: falta el campo: " . $campo;
+            }
+        }
 
 
+        $sql = "DELETE FROM detalle_pedido WHERE id_detalle = :id";
+
+        $stmt = $dwes->prepare($sql);
+
+        $resultado = $stmt->execute([
+            ":id" => $_POST["id_detalle"]
+        ]);
+
+        if ($resultado) {
+            echo "<h2>detalle de Pedido eliminado de manera exitosa</h2>";
+        } else {
+            echo "<h2>No se pudo eliminar el detalle de pedido.</h2>";
+        }
+        echo '<a href="index.php">Volver al menú</a>';
     }
 } catch (PDOException $e) {
     // Detectar errores específicos
