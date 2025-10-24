@@ -19,7 +19,7 @@ Delete-->
     <form action="formulario.php" method="post">
         <legend>¿Que operacion desea realizar en la base de datos?</legend>
         <label>
-            <input type="radio" name="crud" value="create">
+            <input type="radio" name="crud" value="create" >
             Create
         </label>
         <br>
@@ -29,38 +29,38 @@ Delete-->
         </label>
         <br>
         <label>
-            <input type="radio" name="crud" value="update">
+            <input type="radio" name="crud" value="update" >
             Update
         </label>
         <br>
         <label>
-            <input type="radio" name="crud" value="delete">
+            <input type="radio" name="crud" value="delete" >
             Delete
         </label>
         <br>
         <legend>Elige la tabla sobre la que realizar la operación.</legend>
         <label>
-            <input type="radio" name="tabla" value="cliente">
+            <input type="radio" name="tabla" value="cliente" >
             Cliente
         </label>
         <br>
         <label>
-            <input type="radio" name="tabla" value="empleado">
+            <input type="radio" name="tabla" value="empleado" >
             Empleado
         </label>
         <br>
         <label>
-            <input type="radio" name="tabla" value="pedido">
+            <input type="radio" name="tabla" value="pedido" >
             Pedido
         </label>
         <br>
         <label>
-            <input type="radio" name="tabla" value="producto">
+            <input type="radio" name="tabla" value="producto" >
             Producto
         </label>
         <br>
         <label>
-            <input type="radio" name="tabla" value="detalle_pedido">
+            <input type="radio" name="tabla" value="detalle_pedido" >
             Detalle pedido
         </label>
         <br>
